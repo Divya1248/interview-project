@@ -24,7 +24,8 @@ const App = () => {
     let ascending = state.sort((a, b) => {
       return a.id - b.id;
     });
-    setAscending(ascending);
+    let arrr = [...ascending];
+    setAscending(arrr);
     console.log(ascending);
   };
   let sortDes = () => {
@@ -32,56 +33,61 @@ const App = () => {
     let desending = state.sort((a, b) => {
       return b.id - a.id;
     });
-    setDesending(desending);
+    let arr = [...desending];
+    setDesending(arr);
     console.log(desending);
   };
 
-  let ascendingData = ascending
-    .filter(val => {
-      if (searchTerm === "") {
-        return val;
-      } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-        return val;
-        console.log(val.title);
-      }
-    })
-    .map(data => (
-      <div key={data.id}>
-        <h1>Sl No:{data.id}</h1>
-        <h1>Title:{data.title}</h1>
-      </div>
-    ));
+  // let ascendingData = () => {
+  //   ascending
+  //     .filter(val => {
+  //       if (searchTerm === "") {
+  //         return val;
+  //       } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+  //         return val;
+  //         console.log(val.title);
+  //       }
+  //     })
+  //     .map(data => (
+  //       <div key={data.id}>
+  //         <h1>Sl No:{data.id}</h1>
+  //         <h1>Title:{data.title}</h1>
+  //       </div>
+  //     ));
+  // };
 
-  let descendingData = desending
-    .filter(val => {
-      if (searchTerm === "") {
-        return val;
-      } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-        return val;
-        console.log(val.title);
-      }
-    })
-    .map(data => (
-      <div key={data.id}>
-        <h1>Sl No:{data.id}</h1>
-        <h1>Title:{data.title}</h1>
-      </div>
-    ));
+  // let descendingData = () => {
+  //   desending
+  //     .filter(val => {
+  //       if (searchTerm === "") {
+  //         return val;
+  //       } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+  //         return val;
+  //         console.log(val.title);
+  //       }
+  //     })
+  //     .map(data => (
+  //       <div key={data.id}>
+  //         <h1>Sl No:{data.id}</h1>
+  //         <h1>Title:{data.title}</h1>
+  //       </div>
+  //     ));
+  // };
 
   return (
     <>
       <div className="flex w-[100%]">
-        <div className=" p-1 m-auto w-[50%] basis-[70%]">
+        <div className=" p-1 ml-[300px] w-[50%] basis-[70%]">
           <input
             type="search"
             name="searchTerm"
-            className="border-2 p-1 m-auto w-[90%] mx-12 "
+            className="border-2 p-1 m-auto w-[90%] mx-12 rounded-md my-8"
             placeholder="search..."
             value={searchTerm}
             onChange={e => setsearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex-col basis-[40%] my-4 ml-[300px]">
+        <div className="flex-col basis-[40%] my-8 ml-[50px]">
           <button className="bg-blue-400 mx-2 p-2 rounded-md" onClick={sortAsc}>
             Ascending
           </button>
@@ -93,7 +99,7 @@ const App = () => {
           </button>
         </div>
       </div>
-      <div className="mx-[30%] text-black mt-[20px] w-[100%] ">
+      <div className="mx-[30%] text-black mt-[10px] w-[100%] ">
         <div>
           <table className="border-collapse border border-gray-400 ">
             <tr>
@@ -124,7 +130,7 @@ const App = () => {
                         <td className=" border border-gray-300 text-center p-1">
                           {data.id}
                         </td>
-                        <td className=" border border-gray-300 text-center p-1">
+                        <td className=" border border-gray-300 text-center p-1 text-lg">
                           {data.title}
                         </td>
                       </tr>
@@ -135,8 +141,6 @@ const App = () => {
               <h2>{data.id}</h2>
             )}
           </table>
-          {/* <div>{ascendingData}</div>
-          <div>{descendingData}</div> */}
         </div>
       </div>
     </>
